@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import xss from 'xss';
 
 const app = express();
@@ -9,6 +10,11 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 // Parse JSON bodies (as sent by API clients)
 app.use(express.json());
+
+app.get('/:any', (req, res) => {
+  const filePath = path.resolve(`./public/${req.params.any}.html`);
+  res.sendFile(filePath);
+})
 
 // Handle GET request to fetch users
 app.get('/users', async (req, res) => {
