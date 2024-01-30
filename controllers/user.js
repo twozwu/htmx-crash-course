@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 // Handle GET request to fetch users
 export const users = async (req, res) => {
     // const users = [
